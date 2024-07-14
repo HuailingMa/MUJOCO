@@ -5,33 +5,34 @@ This repository contains a collection of simulation projects developed using the
 ## Projects List
 
 1. **Planar Two-Link Manipulator**
-   \\Demonstrates forward kinematics for a simple two-link manipulator.
 
-2. **Differential Drive Car**
+   Demonstrates forward kinematics for a simple two-link manipulator.
+
+3. **Differential Drive Car**
    - Models and controls a differential drive car, showcasing its dynamic behavior.
 
-3. **Projectile Motion with Drag**
+4. **Projectile Motion with Drag**
    - Simulates the motion of a projectile under the influence of gravity and aerodynamic drag.
 
-4. **Interactive Simulation**
+5. **Interactive Simulation**
    - Creates an interactive simulation environment for user-controlled experiments.
 
-5. **Inverse Kinematics with Jacobian**
+6. **Inverse Kinematics with Jacobian**
    - Solves inverse kinematics problems using the Jacobian matrix for a robotic arm.
 
-6. **Servo Control**
+7. **Servo Control**
     - Demonstrates various servo controls for a simple pendulum, including position, velocity, and torque servos.
 
-7. **Finite State Machine Control**
+8. **Finite State Machine Control**
    - Implements a finite state machine to control a pendulum's swing up and hold in a vertical position.
 
-8. **2D Ball Rolling/Sliding**
+9. **2D Ball Rolling/Sliding**
    - Simulates the rolling and sliding motion of a ball in a 2D environment.
 
-9. **Trajectory Tracking Control**
+10. **Trajectory Tracking Control**
    - Generates and tracks a predefined trajectory for a manipulator.
 
-10. **Control of Underactuated Systems(LQR)**
+11. **Control of Underactuated Systems(LQR)**
    - Utilizes Linear Quadratic Regulator (LQR) to control underactuated systems like the double pendulum.
 
 
