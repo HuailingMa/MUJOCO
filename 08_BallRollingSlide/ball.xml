@@ -1,0 +1,27 @@
+<mujoco>
+	<option gravity="0 0 -9.81"/>
+
+	<asset>
+		<texture name='floor' type='2d' builtin='checker' width='256' height='256' rgb1='0 0 0' rgb2='1 1 1' />
+		<material name='floor' texture='floor' texrepeat='2 2' texuniform='true' />
+
+		<texture name='ball' type='2d' builtin='checker' width='256' height='256' rgb1='1 0 0' rgb2='0 1 0' />
+		<material name='ball' texture='ball' texrepeat='2 2' texuniform='true' />
+	</asset>
+
+	<worldbody>
+        <light diffuse=".5 .5 .5" pos="0 0 10" dir="0 0 -1"/>
+		<geom type="plane" size="100 1 0.1" material='floor'/>
+
+		<body pos="0 0 .1" euler="0 90 0">
+			<joint type="slide" axis="0 0 1"/>
+			<joint type="slide" axis="-1 0 0"/>
+			<joint type="hinge" axis="0 -1 0"/>
+			<geom type="sphere" size=".1" material='ball'/>
+
+		</body>
+		
+	</worldbody>
+
+	
+</mujoco>
