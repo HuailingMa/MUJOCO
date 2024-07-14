@@ -43,5 +43,6 @@ This repository contains a collection of simulation projects developed using the
 10. **Control of Underactuated Systems(LQR)**
 
    Utilizes Linear Quadratic Regulator (LQR) to control underactuated systems like the double pendulum.
+   
 
 
