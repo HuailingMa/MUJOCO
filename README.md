@@ -5,7 +5,7 @@ This repository contains a collection of simulation projects developed using the
 ## Projects List
 
 1. **Planar Two-Link Manipulator**
-   Demonstrates forward kinematics for a simple two-link manipulator.
+   \\Demonstrates forward kinematics for a simple two-link manipulator.
 
 2. **Differential Drive Car**
    - Models and controls a differential drive car, showcasing its dynamic behavior.
