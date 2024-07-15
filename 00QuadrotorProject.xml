@@ -1,0 +1,288 @@
+<!--
+Quadcopter with x configuration.
+Front: Along body X-axis
+-->
+
+<mujoco model="quadrotor_x">
+    <compiler angle="degree" inertiafromgeom="true" coordinate="local" />
+    <option timestep="0.01" gravity="0 0 0" density="1" viscosity="1e-5" integrator="RK4" />
+
+    <default>
+        <joint armature="1" damping="1" limited="true" />
+        <geom conaffinity="0" condim="3" density="5.0" friction="1 0.5 0.5" margin="0.01"
+            rgba="0.8 0.6 0.4 1" />
+    </default>
+
+    <asset>
+        <texture builtin="gradient" type="skybox" height="100" width="100" rgb1="1 1 1" rgb2="0 0 0" />
+        <texture name="texgeom" builtin="flat" height="1278" mark="cross" markrgb="1 1 1"
+            random="0.01" rgb1="0.8 0.6 0.4" rgb2="0.8 0.6 0.4" type="cube" width="127" />
+        <texture name="texplane" builtin="checker" height="100" width="100" rgb1="0 0 0"
+            rgb2="0.8 0.8 0.8" type="2d" />
+        <material name="MatPlane" reflectance="0" shininess="1" specular="1" texrepeat="60 60"
+            texture="texplane" />
+        <material name="geom" texture="texgeom" texuniform="true" />
+    </asset>
+
+    <worldbody>
+        <light cutoff="100" diffuse="1 1 1" dir="-0 0 -1.3" directional="true" exponent="1"
+            pos="0 0 1.3" specular=".1 .1 .1" />
+        <geom type="plane" conaffinity="1" condim="3" material="MatPlane" name="floor" pos="0 0 0"
+            rgba="0.4 0.3 0.3 1" size="5 5 0.2" />
+
+        <!-- core1 -->
+        <body name="core1" pos="0 0 3.0">
+            <joint name="root1" type="free" damping="0" armature="0" pos="0 0 0" limited="false" />
+            <camera name="track1" mode="trackcom" pos="0 -3 1.0" xyaxes="1 0 0 0 0 1" />
+            
+            <!-- center -->
+            <geom name="core_geom1" type="box" pos="0 0 0" quat="1 0 0 0" size=".04 .04 .02"
+                rgba=".3 .3 .8 1" mass=".1" />
+            <site name='qua_con1' pos='0 0 -0.02' size='0.03'/>
+
+            <geom name="arm_front_left1" type="box" pos=".07 .07 0" size=".05 .005 .005"
+                quat=".924 0 0 .383" rgba=".3 .3 .8 1" mass=".025" />
+            <geom name="arm_front_right1" type="box" pos=".07 -.07 0" size=".05 .005 .005"
+                quat=".383 0 0 .924" rgba=".3 .3 .8 1" mass=".025" />
+            <geom name="arm_back_right1" type="box" pos="-.07 -.07 0" size=".05 .005 .005"
+                quat="-.383 0 0 .924" rgba=".3 .3 .8 1" mass=".025" />
+            <geom name="arm_back_left1" type="box" pos="-.07 .07 0" size=".05 .005 .005"
+                quat=".924 0 0 -.383" rgba=".3 .3 .8 1" mass=".025" />
+
+            <site name="motor_front_left1" type="cylinder" pos=".1 .1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+            <site name="motor_front_right1" type="cylinder" pos=".1 -.1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+            <site name="motor_back_right1" type="cylinder" pos="-.1 -.1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+            <site name="motor_back_left1" type="cylinder" pos="-.1  .1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+
+            <geom name="thruster_front_left1" type="cylinder" pos=".1 .1 .0075" size=".05 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+            <geom name="thruster_front_right1" type="cylinder" pos=".1 -.1 .0075" size=".05 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+            <geom name="thruster_back_right1" type="cylinder" pos="-.1 -.1 .0075" size=".05 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+            <geom name="thruster_back_left1" type="cylinder" pos="-.1 .1 .0075" size=".05 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+
+            <site name="x_axis1" type="box" pos=".1 0 0" size=".1 .005 .005" quat="1 0 0 0"
+                rgba="1 0 0 0.3" />
+            <site name="y_axis1" type="box" pos="0 .1 0" size=".1 .005 .005" quat=".707 0 0 .707"
+                rgba="0 1 0 0.3" />
+            <site name="z_axis1" type="box" pos="0 0 .1" size=".1 .005 .005" quat="-.707 0 .707 0"
+                rgba="0 0 1 0.3" />
+
+        </body>
+
+        <!-- core2 -->
+        <body name="core2" pos="2.0 0 3.0">
+            <joint name="root2" type="free" damping="0" armature="0" pos="0 0 0" limited="false" />
+            <camera name="track2" mode="trackcom" pos="0 -3 1.0" xyaxes="1 0 0 0 0 1" />
+
+            <!-- center -->
+            <geom name="core_geom2" type="box" pos="0 0 0" quat="1 0 0 0" size=".04 .04 .02"
+                rgba=".3 .3 .8 1" mass=".1" />
+            <site name='qua_con2' pos='0 0 -0.02' size='0.03'/>
+
+            <geom name="arm_front_left2" type="box" pos=".07 .07 0" size=".05 .005 .005"
+                quat=".924 0 0 .383" rgba=".3 .3 .8 1" mass=".025" />
+            <geom name="arm_front_right2" type="box" pos=".07 -.07 0" size=".05 .005 .005"
+                quat=".383 0 0 .924" rgba=".3 .3 .8 1" mass=".025" />
+            <geom name="arm_back_right2" type="box" pos="-.07 -.07 0" size=".05 .005 .005"
+                quat="-.383 0 0 .924" rgba=".3 .3 .8 1" mass=".025" />
+            <geom name="arm_back_left2" type="box" pos="-.07 .07 0" size=".05 .005 .005"
+                quat=".924 0 0 -.383" rgba=".3 .3 .8 1" mass=".025" />
+
+            <site name="motor_front_left2" type="cylinder" pos=".1 .1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+            <site name="motor_front_right2" type="cylinder" pos=".1 -.1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+            <site name="motor_back_right2" type="cylinder" pos="-.1 -.1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+            <site name="motor_back_left2" type="cylinder" pos="-.1  .1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+
+            <geom name="thruster_front_left2" type="cylinder" pos=".1 .1 .0075" size=".05 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+            <geom name="thruster_front_right2" type="cylinder" pos=".1 -.1 .0075"
+                size=".05 .0025" quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+            <geom name="thruster_back_right2" type="cylinder" pos="-.1 -.1 .0075"
+                size=".05 .0025" quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+            <geom name="thruster_back_left2" type="cylinder" pos="-.1 .1 .0075" size=".05 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+
+            <site name="x_axis2" type="box" pos=".1 0 0" size=".1 .005 .005" quat="1 0 0 0"
+                rgba="1 0 0 0.3" />
+            <site name="y_axis2" type="box" pos="0 .1 0" size=".1 .005 .005" quat=".707 0 0 .707"
+                rgba="0 1 0 0.3" />
+            <site name="z_axis2" type="box" pos="0 0 .1" size=".1 .005 .005"
+                quat="-.707 0 .707 0" rgba="0 0 1 0.3" />
+
+
+        </body>
+
+        <!-- core3 -->
+        <body name="core3" pos="2.0 2.0 3.0">
+            <joint name="root3" type="free" damping="0" armature="0" pos="0 0 0" limited="false" />
+            <camera name="track3" mode="trackcom" pos="0 -3 1.0" xyaxes="1 0 0 0 0 1" />
+
+            <!-- center -->
+            <geom name="core_geom3" type="box" pos="0 0 0" quat="1 0 0 0" size=".04 .04 .02"
+                rgba=".3 .3 .8 1" mass=".1" />
+            <site name='qua_con3' pos='0 0 -0.02' size='0.03'/>
+
+            <geom name="arm_front_left3" type="box" pos=".07 .07 0" size=".05 .005 .005"
+                quat=".924 0 0 .383" rgba=".3 .3 .8 1" mass=".025" />
+            <geom name="arm_front_right3" type="box" pos=".07 -.07 0" size=".05 .005 .005"
+                quat=".383 0 0 .924" rgba=".3 .3 .8 1" mass=".025" />
+            <geom name="arm_back_right3" type="box" pos="-.07 -.07 0" size=".05 .005 .005"
+                quat="-.383 0 0 .924" rgba=".3 .3 .8 1" mass=".025" />
+            <geom name="arm_back_left3" type="box" pos="-.07 .07 0" size=".05 .005 .005"
+                quat=".924 0 0 -.383" rgba=".3 .3 .8 1" mass=".025" />
+
+            <site name="motor_front_left3" type="cylinder" pos=".1 .1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+            <site name="motor_front_right3" type="cylinder" pos=".1 -.1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+            <site name="motor_back_right3" type="cylinder" pos="-.1 -.1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+            <site name="motor_back_left3" type="cylinder" pos="-.1  .1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+
+            <geom name="thruster_front_left3" type="cylinder" pos=".1 .1 .0075" size=".05 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+            <geom name="thruster_front_right3" type="cylinder" pos=".1 -.1 .0075"
+                size=".05 .0025" quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+            <geom name="thruster_back_right3" type="cylinder" pos="-.1 -.1 .0075"
+                size=".05 .0025" quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+            <geom name="thruster_back_left3" type="cylinder" pos="-.1 .1 .0075" size=".05 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+
+            <site name="x_axis3" type="box" pos=".1 0 0" size=".1 .005 .005" quat="1 0 0 0"
+                rgba="1 0 0 0.3" />
+            <site name="y_axis3" type="box" pos="0 .1 0" size=".1 .005 .005" quat=".707 0 0 .707"
+                rgba="0 1 0 0.3" />
+            <site name="z_axis3" type="box" pos="0 0 .1" size=".1 .005 .005"
+                quat="-.707 0 .707 0" rgba="0 0 1 0.3" />
+
+
+        </body>
+
+        <!-- core4 -->
+        <body name="core4" pos="0.0 2.0 3.0">
+            <joint name="root4" type="free" damping="0" armature="0" pos="0 0 0" limited="false" />
+            <camera name="track4" mode="trackcom" pos="0 -3 1.0" xyaxes="1 0 0 0 0 1" />
+
+            <!-- center -->
+            <geom name="core_geom4" type="box" pos="0 0 0" quat="1 0 0 0" size=".04 .04 .02"
+                rgba=".3 .3 .8 1" mass=".1" />
+            <site name='qua_con4' pos='0 0 -0.02' size='0.03'/>
+
+            <geom name="arm_front_left4" type="box" pos=".07 .07 0" size=".05 .005 .005"
+                quat=".924 0 0 .383" rgba=".3 .3 .8 1" mass=".025" />
+            <geom name="arm_front_right4" type="box" pos=".07 -.07 0" size=".05 .005 .005"
+                quat=".383 0 0 .924" rgba=".3 .3 .8 1" mass=".025" />
+            <geom name="arm_back_right4" type="box" pos="-.07 -.07 0" size=".05 .005 .005"
+                quat="-.383 0 0 .924" rgba=".3 .3 .8 1" mass=".025" />
+            <geom name="arm_back_left4" type="box" pos="-.07 .07 0" size=".05 .005 .005"
+                quat=".924 0 0 -.383" rgba=".3 .3 .8 1" mass=".025" />
+
+            <site name="motor_front_left4" type="cylinder" pos=".1 .1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+            <site name="motor_front_right4" type="cylinder" pos=".1 -.1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+            <site name="motor_back_right4" type="cylinder" pos="-.1 -.1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+            <site name="motor_back_left4" type="cylinder" pos="-.1  .1 .0075" size=".01 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 1" />
+
+            <geom name="thruster_front_left4" type="cylinder" pos=".1 .1 .0075" size=".05 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+            <geom name="thruster_front_right4" type="cylinder" pos=".1 -.1 .0075"
+                size=".05 .0025" quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+            <geom name="thruster_back_right4" type="cylinder" pos="-.1 -.1 .0075"
+                size=".05 .0025" quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+            <geom name="thruster_back_left4" type="cylinder" pos="-.1 .1 .0075" size=".05 .0025"
+                quat="1 0 0 0" rgba=".3 .8 .3 0.6" mass=".025" />
+
+            <site name="x_axis4" type="box" pos=".1 0 0" size=".1 .005 .005" quat="1 0 0 0"
+                rgba="1 0 0 0.3" />
+            <site name="y_axis4" type="box" pos="0 .1 0" size=".1 .005 .005" quat=".707 0 0 .707"
+                rgba="0 1 0 0.3" />
+            <site name="z_axis4" type="box" pos="0 0 .1" size=".1 .005 .005"
+                quat="-.707 0 .707 0" rgba="0 0 1 0.3" />
+
+                
+        </body>
+
+        <!-- object -->
+        <body name='object' pos="1 1 1.5">
+			<joint type="free"/>
+			<geom type="box" size="0.1 .1 .1" rgba="0.9 0.9 0 1"/>
+            <site name='obj_con1' pos='-0.1 -0.1 0.1' size='0.03'/>
+            <site name='obj_con2' pos='0.1 -0.1 0.1' size='0.03'/>
+            <site name='obj_con3' pos='0.1 0.1 0.1' size='0.03'/>
+            <site name='obj_con4' pos='-0.1 0.1 0.1' size='0.03'/>
+        </body>
+
+    </worldbody>
+
+    <!-- rope -->
+    <tendon>
+        <spatial width="0.005" rgba=".95 .3 .3 1" limited="true" range="0 5" frictionloss="100"
+            damping="100">
+            <site site="qua_con1" />
+            <site site="obj_con1" />
+        </spatial>
+    </tendon>
+    <tendon>
+        <spatial width="0.005" rgba=".95 .3 .3 1" limited="true" range="0 5" frictionloss="100"
+            damping="100">
+            <site site="qua_con2" />
+            <site site="obj_con2" />
+        </spatial>
+    </tendon>
+    <tendon>
+        <spatial width="0.005" rgba=".95 .3 .3 1" limited="true" range="0 5" frictionloss="100"
+            damping="100">
+            <site site="qua_con3" />
+            <site site="obj_con3" />
+        </spatial>
+    </tendon>
+    <tendon>
+        <spatial width="0.005" rgba=".95 .3 .3 1" limited="true" range="0 5" frictionloss="100"
+            damping="100">
+            <site site="qua_con4" />
+            <site site="obj_con4" />
+        </spatial>
+    </tendon>
+
+    <actuator>
+        <!-- core1 -->
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 -.1" site="motor_front_left1" />
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 .1" site="motor_back_left1" />
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 -.1" site="motor_back_right1" />
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 .1" site="motor_front_right1" />
+
+        <!-- core2 -->
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 -.1" site="motor_front_left2" />
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 .1" site="motor_back_left2" />
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 -.1" site="motor_back_right2" />
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 .1" site="motor_front_right2" />
+
+        <!-- core3 -->
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 -.1" site="motor_front_left3" />
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 .1" site="motor_back_left3" />
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 -.1" site="motor_back_right3" />
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 .1" site="motor_front_right3" />
+
+        <!-- core4 -->
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 -.1" site="motor_front_left4" />
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 .1" site="motor_back_left4" />
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 -.1" site="motor_back_right4" />
+        <motor ctrllimited="true" ctrlrange="0 1" gear="0 0 1 0 0 .1" site="motor_front_right4" />
+    </actuator>
+
+</mujoco>
