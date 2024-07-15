@@ -5,6 +5,8 @@ This repository contains a collection of simulation projects developed using the
 ## Projects List
 0. **Quadrotor Project**
 
+      The model simulates four quadrotors suspending an object.
+
 1. **Planar Two-Link Manipulator**
 
       Demonstrates forward kinematics for a simple two-link manipulator.
