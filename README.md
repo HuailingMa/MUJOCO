@@ -3,6 +3,7 @@
 This repository contains a collection of simulation projects developed using the MuJoCo physics engine. Each project explores different aspects of simulation, such as kinematics, dynamics, control, and interactive environments.
 
 ## Projects List
+0. **Quadrotor Project**
 
 1. **Planar Two-Link Manipulator**
 
